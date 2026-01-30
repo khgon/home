@@ -2,8 +2,15 @@
     display: none;
 }
 
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
 body {
     display: flex;
+    flex-direction: column;
     margin: 0px;
     width: 100%;
     text-align: center;
@@ -73,10 +80,14 @@ ul {
 
 #weather {
     display: inline-block;
-    position: absolute;
-    top: 30px;
-    left: 30px; 
-  }
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    max-width: calc(100vw - 48px);
+    overflow-wrap: anywhere;
+    text-align: left;
+    z-index: 2;
+}
 
 #todo-list span {
     padding: 0px 10px;
