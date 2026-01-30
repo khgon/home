@@ -1,12 +1,16 @@
 const weather = document.querySelector("#weather span:first-child");
 const city = document.querySelector("#weather span:last-child");
-const API_KEY = "70f56415bcf6fde9c18cc94ce0dcd400";
+const API_KEY = localStorage.getItem("weatherApiKey");
 
 function onGeoOk(position) {
+    if (!API_KEY) {
+      weather.innerText = "날씨 API 키를 설정해주세요";
+      city.innerText = "localStorage.weatherApiKey";
+      return;
+    }
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
-    console.log(url);
     fetch(url)
     .then((response) => response.json())
     .then((data) => {
@@ -16,7 +20,7 @@ function onGeoOk(position) {
 }
 
 function onGeoError() {
-    alert("Can't find You. No weather for you");
+    alert("위치를 찾을 수 없습니다. 날씨 정보를 표시할 수 없어요.");
 }
 
 navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
