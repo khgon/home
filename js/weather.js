@@ -1,16 +1,11 @@
 const weather = document.querySelector("#weather span:first-child");
 const city = document.querySelector("#weather span:last-child");
 const API_KEY = localStorage.getItem("weatherApiKey");
-const WEATHER_NOTICE_TIMEOUT_MS = 5000;
 
 function onGeoOk(position) {
     if (!API_KEY) {
       weather.innerText = "날씨 API 키를 설정해주세요";
       city.innerText = "localStorage.weatherApiKey";
-      setTimeout(() => {
-        weather.innerText = "";
-        city.innerText = "";
-      }, WEATHER_NOTICE_TIMEOUT_MS);
       return;
     }
     const lat = position.coords.latitude;
