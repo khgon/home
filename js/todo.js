@@ -23,7 +23,9 @@ function paintToDo(newTodo) {
     const span = document.createElement("span");
     span.innerText = newTodo.text;
     const button = document.createElement("button");
-    button.innerHTML = "X";
+    button.type = "button";
+    button.innerText = "삭제";
+    button.setAttribute("aria-label", `할 일 삭제: ${newTodo.text}`);
     button.addEventListener("click", deleteToDo);
     li.appendChild(button);
     li.appendChild(span);
